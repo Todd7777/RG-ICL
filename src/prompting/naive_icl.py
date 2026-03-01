@@ -26,10 +26,7 @@ class NaiveICLPrompter:
 
         refs = self._sample_references(reference_pool, k, rng_seed)
 
-        if is_multi_label:
-            system = ClassificationTemplate.MULTI_LABEL_SYSTEM_PROMPT
-        else:
-            system = ClassificationTemplate.SYSTEM_PROMPT
+        system = ClassificationTemplate.get_system_prompt(dataset_name, is_multi_label)
 
         user_content = []
         ref_ids = []
@@ -54,6 +51,7 @@ class NaiveICLPrompter:
             label_names=label_names,
             is_multi_label=is_multi_label,
             dataset_name=dataset_name,
+            method="naive_icl",
         )
         user_content.extend(query_content)
 

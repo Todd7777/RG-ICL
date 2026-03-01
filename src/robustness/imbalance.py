@@ -66,6 +66,10 @@ class ImbalanceExperiment:
         return self.construct_imbalanced_set(reference_pool, neg_ratio=5, pos_ratio=1,
                                               positive_label=positive_label)
 
+    def get_balanced_set(self, reference_pool: list, positive_label: int = 1) -> list:
+        return self.construct_imbalanced_set(reference_pool, neg_ratio=3, pos_ratio=3,
+                                              positive_label=positive_label)
+
     def get_specialty_set(self, reference_pool: list, positive_label: int = 1) -> list:
         return self.construct_imbalanced_set(reference_pool, neg_ratio=1, pos_ratio=5,
                                               positive_label=positive_label)

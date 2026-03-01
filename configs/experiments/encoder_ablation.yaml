@@ -2,6 +2,7 @@ name: encoder_ablation
 seed: 42
 data_root: data
 output_root: outputs/encoder_ablation
+features_root: outputs/features
 
 inference:
   model: gpt-4-vision-preview
@@ -20,7 +21,7 @@ retrieval:
   exclude_test_set: true
 
 encoders:
-  - name: dinov2
+  - name: dinov3
     model_id: facebook/dinov2-large
     image_size: 518
   - name: clip

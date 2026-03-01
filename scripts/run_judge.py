@@ -66,6 +66,7 @@ def main():
     comparisons = args.comparisons or [
         "naive_icl:zero_shot",
         "rg_icl_global_spatial:zero_shot",
+        "rg_icl_global_spatial:naive_icl",
     ]
 
     judge = LLMJudge(

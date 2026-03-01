@@ -6,7 +6,7 @@ import yaml
 
 @dataclass
 class EncoderConfig:
-    name: str = "dinov2"
+    name: str = "dinov3"
     model_id: str = "facebook/dinov2-large"
     device: str = "cuda"
     batch_size: int = 32
@@ -49,7 +49,7 @@ class MetricsConfig:
 
 @dataclass
 class JudgeConfig:
-    model: str = "gpt-4-turbo"
+    model: str = "gpt-5"
     temperature: float = 0.0
     seed: int = 42
     n_samples_per_dataset: int = 300
@@ -66,11 +66,12 @@ class JudgeConfig:
 class RobustnessConfig:
     imbalance_ratios: list = field(default_factory=lambda: [
         {"neg": 5, "pos": 1},
+        {"neg": 3, "pos": 3},
         {"neg": 1, "pos": 5},
     ])
     ordering_permutations: int = 10
     ordering_seed: int = 42
-    label_inconsistency_encoder: str = "dinov2"
+    label_inconsistency_encoder: str = "dinov3"
 
 
 @dataclass
@@ -79,6 +80,7 @@ class ExperimentConfig:
     seed: int = 42
     data_root: str = "data"
     output_root: str = "outputs"
+    features_root: str = "outputs/features"
     encoder: EncoderConfig = field(default_factory=EncoderConfig)
     retrieval: RetrievalConfig = field(default_factory=RetrievalConfig)
     inference: InferenceConfig = field(default_factory=InferenceConfig)

@@ -39,7 +39,7 @@ STEPS = [
         "name": "encoder_ablation",
         "script": "scripts/run_encoder_ablation.py",
         "config": "configs/experiments/encoder_ablation.yaml",
-        "description": "Run encoder ablation (DINOv2 vs CLIP vs MAE)",
+        "description": "Run encoder ablation (DINOv3 vs CLIP vs MAE)",
     },
     {
         "name": "judge",
@@ -52,6 +52,12 @@ STEPS = [
         "script": "scripts/run_stats.py",
         "config": "configs/default.yaml",
         "description": "Compute paired bootstrap and DeLong statistical tests",
+    },
+    {
+        "name": "verify",
+        "script": "scripts/verify_results.py",
+        "config": "configs/default.yaml",
+        "description": "Verify outputs against supplementary table reference values",
     },
 ]
 

@@ -15,8 +15,8 @@ from inference import MLLMClient, OutputParser
 from metrics import ClassificationMetrics
 
 
-def load_features(output_root, dataset_name, encoder_name):
-    feat_path = Path(output_root) / "features" / dataset_name / encoder_name
+def load_features(features_root, dataset_name, encoder_name):
+    feat_path = Path(features_root) / dataset_name / encoder_name
     with open(feat_path / "metadata.json", "r") as f:
         metadata = json.load(f)
     global_emb = np.load(feat_path / "global_embeddings.npy")
@@ -240,7 +240,7 @@ def main():
 
         dataset = get_dataset(ds_name, cfg.data_root, split="all")
         metadata, global_emb, spatial_feats = load_features(
-            cfg.output_root, ds_name, encoder_name)
+            cfg.features_root, ds_name, encoder_name)
 
         ds_sweep = {}
         for method in methods:

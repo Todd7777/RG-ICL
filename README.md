@@ -1,6 +1,6 @@
 # RG-ICL
 
-Representation-Guided In-Context Learning for medical image classification and visual question answering. Training-free framework using frozen vision encoders + GPT-4V.
+Representation-Guided In-Context Learning for medical image classification and visual question answering. Training-free framework using frozen DINOv3 vision encoder + GPT-4V.
 
 ## Install
 
@@ -31,7 +31,7 @@ python scripts/run_classification.py --methods naive_icl
 python scripts/run_vqa.py --methods naive_icl
 ```
 
-### 4. RG-ICL Global (DINOv2 CLS-token retrieval)
+### 4. RG-ICL Global (DINOv3 CLS-token retrieval)
 
 ```bash
 python scripts/run_classification.py --methods rg_icl_global
@@ -66,6 +66,12 @@ python scripts/run_robustness.py --config configs/experiments/robustness.yaml
 python scripts/run_encoder_ablation.py --config configs/experiments/encoder_ablation.yaml
 python scripts/run_judge.py --config configs/default.yaml
 python scripts/run_stats.py --config configs/default.yaml
+```
+
+### Verify Against Paper
+
+```bash
+python scripts/verify_results.py --pred-root outputs --tolerance 0.02
 ```
 
 ## Datasets

@@ -1,0 +1,132 @@
+{
+  "provenance": "Exact results from Supplementary Data Tables 3-23. These values are the ground truth for reproduction verification.",
+
+  "classification": {
+    "lag": {
+      "zero_shot":               {"auc": 0.88, "sens_at_spec90": 0.62, "accuracy": 0.85, "brier": 0.17, "ece": 0.045, "nll": 0.330},
+      "naive_icl":               {"auc": 0.94, "sens_at_spec90": 0.81, "accuracy": 0.87, "brier": 0.10, "ece": 0.038, "nll": 0.305},
+      "rg_icl_global":           {"auc": 0.96, "sens_at_spec90": 0.84, "accuracy": 0.89, "brier": 0.08, "ece": 0.027, "nll": 0.278},
+      "rg_icl_global_spatial":   {"auc": 0.96, "sens_at_spec90": 0.86, "accuracy": 0.90, "brier": 0.08, "ece": 0.020, "nll": 0.262}
+    },
+    "ddr": {
+      "zero_shot":               {"auc": 0.75, "sens_at_spec90": 0.68, "accuracy": 0.75, "brier": 0.24, "ece": 0.062, "nll": 0.465},
+      "naive_icl":               {"auc": 0.79, "sens_at_spec90": 0.77, "accuracy": 0.77, "brier": 0.20, "ece": 0.052, "nll": 0.435},
+      "rg_icl_global":           {"auc": 0.85, "sens_at_spec90": 0.83, "accuracy": 0.79, "brier": 0.16, "ece": 0.038, "nll": 0.405},
+      "rg_icl_global_spatial":   {"auc": 0.87, "sens_at_spec90": 0.85, "accuracy": 0.81, "brier": 0.14, "ece": 0.027, "nll": 0.375}
+    },
+    "chexpert": {
+      "zero_shot":               {"auc": 0.72, "sens_at_spec90": 0.64, "accuracy": 0.72, "brier": 0.26, "ece": 0.070, "nll": 0.485},
+      "naive_icl":               {"auc": 0.76, "sens_at_spec90": 0.74, "accuracy": 0.74, "brier": 0.22, "ece": 0.060, "nll": 0.455},
+      "rg_icl_global":           {"auc": 0.82, "sens_at_spec90": 0.79, "accuracy": 0.76, "brier": 0.18, "ece": 0.045, "nll": 0.425},
+      "rg_icl_global_spatial":   {"auc": 0.84, "sens_at_spec90": 0.81, "accuracy": 0.78, "brier": 0.16, "ece": 0.030, "nll": 0.395}
+    },
+    "breakhis": {
+      "zero_shot":               {"auc": 0.88, "sens_at_spec90": 0.80, "accuracy": 0.86, "brier": 0.14, "ece": 0.040, "nll": 0.305},
+      "naive_icl":               {"auc": 0.91, "sens_at_spec90": 0.84, "accuracy": 0.87, "brier": 0.11, "ece": 0.034, "nll": 0.290},
+      "rg_icl_global":           {"auc": 0.93, "sens_at_spec90": 0.86, "accuracy": 0.88, "brier": 0.10, "ece": 0.025, "nll": 0.268},
+      "rg_icl_global_spatial":   {"auc": 0.94, "sens_at_spec90": 0.87, "accuracy": 0.90, "brier": 0.09, "ece": 0.018, "nll": 0.250}
+    }
+  },
+
+  "k_sweep": {
+    "dataset": "chexpert",
+    "metric": "auc",
+    "results": {
+      "naive_icl":               {"k2": 0.68, "k4": 0.74, "k6": 0.76, "k8": 0.77},
+      "rg_icl_global":           {"k2": 0.76, "k4": 0.80, "k6": 0.82, "k8": 0.83},
+      "rg_icl_global_spatial":   {"k2": 0.79, "k4": 0.83, "k6": 0.84, "k8": 0.85}
+    }
+  },
+
+  "robustness_imbalance": {
+    "dataset": "chexpert",
+    "5N_1P": {
+      "naive_icl":   {"sensitivity": 0.53, "specificity": 0.90},
+      "rg_icl":      {"sensitivity": 0.68, "specificity": 0.91}
+    },
+    "5P_1N": {
+      "naive_icl":   {"sensitivity": 0.79, "specificity": 0.61},
+      "rg_icl":      {"sensitivity": 0.82, "specificity": 0.79}
+    }
+  },
+
+  "robustness_ordering": {
+    "dataset": "chexpert",
+    "balanced_3P_3N": {
+      "naive_icl":   {"auc": 0.76, "order_sd": 0.031},
+      "rg_icl":      {"auc": 0.84, "order_sd": 0.012}
+    },
+    "skewed_5N_1P": {
+      "naive_icl":   {"auc": 0.69, "order_sd": 0.045},
+      "rg_icl":      {"auc": 0.82, "order_sd": 0.016}
+    },
+    "skewed_5P_1N": {
+      "naive_icl":   {"auc": 0.72, "order_sd": 0.038},
+      "rg_icl":      {"auc": 0.83, "order_sd": 0.014}
+    }
+  },
+
+  "robustness_label_inconsistency": {
+    "lag": {
+      "naive_icl":   {"auc_clean": 0.94, "auc_perturbed": 0.86, "delta_auc": -0.08},
+      "rg_icl":      {"auc_clean": 0.97, "auc_perturbed": 0.93, "delta_auc": -0.04}
+    },
+    "ddr": {
+      "naive_icl":   {"auc_clean": 0.79, "auc_perturbed": 0.71, "delta_auc": -0.08},
+      "rg_icl":      {"auc_clean": 0.87, "auc_perturbed": 0.83, "delta_auc": -0.04}
+    },
+    "chexpert": {
+      "naive_icl":   {"auc_clean": 0.76, "auc_perturbed": 0.68, "delta_auc": -0.08},
+      "rg_icl":      {"auc_clean": 0.84, "auc_perturbed": 0.80, "delta_auc": -0.04}
+    },
+    "breakhis": {
+      "naive_icl":   {"auc_clean": 0.91, "auc_perturbed": 0.88, "delta_auc": -0.03},
+      "rg_icl":      {"auc_clean": 0.94, "auc_perturbed": 0.92, "delta_auc": -0.02}
+    }
+  },
+
+  "encoder_ablation_classification": {
+    "dataset": "ddr",
+    "metric": "auc",
+    "results": {
+      "dinov3":  {"zero_shot": 0.790, "naive_icl": 0.870, "rg_icl": 0.885},
+      "clip":    {"zero_shot": 0.760, "naive_icl": 0.820, "rg_icl": 0.834},
+      "mae":     {"zero_shot": 0.750, "naive_icl": 0.800, "rg_icl": 0.814}
+    }
+  },
+
+  "vqa_bleu4": {
+    "dataset": "medical_cxr_vqa",
+    "metric": "bleu4",
+    "results": {
+      "dinov3":  {"zero_shot": 31.1, "naive_icl": 41.9, "rg_icl": 44.3},
+      "clip":    {"zero_shot": 25.5, "naive_icl": 33.4, "rg_icl": 35.2},
+      "mae":     {"zero_shot": 28.6, "naive_icl": 39.4, "rg_icl": 41.1}
+    }
+  },
+
+  "judge_win_rates": {
+    "medical_cxr_vqa": {
+      "naive_icl_vs_zero_shot":        {"wins": 180, "ties": 66, "losses": 54, "win_rate": 0.71},
+      "rg_icl_vs_zero_shot":           {"wins": 204, "ties": 72, "losses": 24, "win_rate": 0.80},
+      "rg_icl_vs_naive_icl":           {"wins": 141, "ties": 90, "losses": 69, "win_rate": 0.62}
+    }
+  },
+
+  "judge_rubric_scores": {
+    "vqa_rad": {
+      "zero_shot":  {"clinical_correctness": 3.41, "evidence_grounding": 3.08, "completeness": 3.15, "uncertainty_acknowledgement": 2.68},
+      "naive_icl":  {"clinical_correctness": 3.62, "evidence_grounding": 3.38, "completeness": 3.41, "uncertainty_acknowledgement": 2.92},
+      "rg_icl":     {"clinical_correctness": 3.78, "evidence_grounding": 3.62, "completeness": 3.57, "uncertainty_acknowledgement": 3.16}
+    }
+  },
+
+  "judge_encoder_win_rates": {
+    "rg_icl_vs_naive_icl": {
+      "vqa_rad":         {"clip": 0.56, "mae": 0.54, "dinov3": 0.58},
+      "pathvqa":         {"clip": 0.58, "mae": 0.55, "dinov3": 0.60},
+      "medical_cxr_vqa": {"clip": 0.57, "mae": 0.54, "dinov3": 0.59},
+      "pmc_vqa":         {"clip": 0.55, "mae": 0.53, "dinov3": 0.56}
+    }
+  }
+}

@@ -1,59 +1,65 @@
 {
-  "provenance": "Reported baselines from manuscript tables. These are NOT recomputed by this codebase.",
-  "classification": {
-    "lag": {
-      "DenseNet-121": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
-      "EfficientNet-v2": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
-      "ConvNeXt": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
-      "CLIP-ViT-L/14": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"}
-    },
-    "ddr": {
-      "DenseNet-121": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
-      "EfficientNet-v2": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
-      "ConvNeXt": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
-      "CLIP-ViT-L/14": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"}
-    },
-    "chexpert": {
-      "DenseNet-121": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
-      "EfficientNet-v2": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
-      "ConvNeXt": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
-      "CLIP-ViT-L/14": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"}
-    },
-    "breakhis": {
-      "DenseNet-121": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
-      "EfficientNet-v2": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
-      "ConvNeXt": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
-      "CLIP-ViT-L/14": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"}
+  "provenance": "Reported baselines from Supplementary Data Tables 3-6. These are NOT recomputed by this codebase.",
+  "supervised_finetuned_mllms": {
+    "models": ["Medical VLM-24B", "LLaVA-1.6", "ChatGPT", "Qwen-2.5", "Grok"],
+    "classification": {
+      "lag": {
+        "Medical VLM-24B": {"auc": 0.95, "sens_at_spec90": 0.85, "accuracy": 0.90, "brier": 0.09, "ece": 0.024, "nll": 0.272},
+        "LLaVA-1.6":       {"auc": 0.97, "sens_at_spec90": 0.88, "accuracy": 0.89, "brier": 0.07, "ece": 0.028, "nll": 0.284},
+        "ChatGPT":          {"auc": 0.92, "sens_at_spec90": 0.82, "accuracy": 0.90, "brier": 0.10, "ece": 0.021, "nll": 0.265},
+        "Qwen-2.5":         {"auc": 0.93, "sens_at_spec90": 0.83, "accuracy": 0.90, "brier": 0.09, "ece": 0.023, "nll": 0.270},
+        "Grok":             {"auc": 0.91, "sens_at_spec90": 0.81, "accuracy": 0.90, "brier": 0.11, "ece": 0.024, "nll": 0.272}
+      },
+      "ddr": {
+        "Medical VLM-24B": {"auc": 0.90, "sens_at_spec90": 0.81, "accuracy": 0.80, "brier": 0.18, "ece": 0.031, "nll": 0.392},
+        "LLaVA-1.6":       {"auc": 0.88, "sens_at_spec90": 0.80, "accuracy": 0.79, "brier": 0.19, "ece": 0.035, "nll": 0.402},
+        "ChatGPT":          {"auc": 0.86, "sens_at_spec90": 0.78, "accuracy": 0.81, "brier": 0.20, "ece": 0.028, "nll": 0.378},
+        "Qwen-2.5":         {"auc": 0.87, "sens_at_spec90": 0.79, "accuracy": 0.80, "brier": 0.19, "ece": 0.030, "nll": 0.390},
+        "Grok":             {"auc": 0.85, "sens_at_spec90": 0.77, "accuracy": 0.80, "brier": 0.21, "ece": 0.031, "nll": 0.392}
+      },
+      "chexpert": {
+        "Medical VLM-24B": {"auc": 0.86, "sens_at_spec90": 0.71, "accuracy": 0.77, "brier": 0.13, "ece": 0.036, "nll": 0.410},
+        "LLaVA-1.6":       {"auc": 0.84, "sens_at_spec90": 0.69, "accuracy": 0.76, "brier": 0.14, "ece": 0.040, "nll": 0.420},
+        "ChatGPT":          {"auc": 0.81, "sens_at_spec90": 0.66, "accuracy": 0.78, "brier": 0.16, "ece": 0.031, "nll": 0.398},
+        "Qwen-2.5":         {"auc": 0.82, "sens_at_spec90": 0.67, "accuracy": 0.77, "brier": 0.15, "ece": 0.034, "nll": 0.405},
+        "Grok":             {"auc": 0.79, "sens_at_spec90": 0.64, "accuracy": 0.77, "brier": 0.17, "ece": 0.035, "nll": 0.408}
+      },
+      "breakhis": {
+        "Medical VLM-24B": {"auc": 0.96, "sens_at_spec90": 0.90, "accuracy": 0.89, "brier": 0.08, "ece": 0.022, "nll": 0.262},
+        "LLaVA-1.6":       {"auc": 0.95, "sens_at_spec90": 0.88, "accuracy": 0.88, "brier": 0.09, "ece": 0.026, "nll": 0.275},
+        "ChatGPT":          {"auc": 0.93, "sens_at_spec90": 0.86, "accuracy": 0.90, "brier": 0.10, "ece": 0.019, "nll": 0.252},
+        "Qwen-2.5":         {"auc": 0.94, "sens_at_spec90": 0.87, "accuracy": 0.89, "brier": 0.10, "ece": 0.021, "nll": 0.260},
+        "Grok":             {"auc": 0.92, "sens_at_spec90": 0.85, "accuracy": 0.89, "brier": 0.11, "ece": 0.022, "nll": 0.262}
+      }
     }
   },
-  "vqa": {
-    "medical_cxr_vqa": {
-      "Medical-VLM-24B": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "LLaVA-1.6": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "ChatGPT-5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "Qwen-2.5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "Grok-4.1": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"}
-    },
-    "vqa_rad": {
-      "Medical-VLM-24B": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "LLaVA-1.6": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "ChatGPT-5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "Qwen-2.5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "Grok-4.1": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"}
-    },
-    "pathvqa": {
-      "Medical-VLM-24B": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "LLaVA-1.6": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "ChatGPT-5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "Qwen-2.5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "Grok-4.1": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"}
-    },
-    "pmc_vqa": {
-      "Medical-VLM-24B": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "LLaVA-1.6": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "ChatGPT-5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "Qwen-2.5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
-      "Grok-4.1": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"}
+  "conventional_classifiers": {
+    "models": ["DenseNet-121", "EfficientNet v2", "ConvNeXt", "CLIP ViT-L/14"],
+    "classification": {
+      "lag": {
+        "DenseNet-121":    {"auc": 0.93, "sens_at_spec90": 0.82, "accuracy": 0.91, "brier": 0.07, "ece": 0.020, "nll": 0.260},
+        "EfficientNet v2": {"auc": 0.94, "sens_at_spec90": 0.84, "accuracy": 0.92, "brier": 0.08, "ece": 0.018, "nll": 0.250},
+        "ConvNeXt":        {"auc": 0.94, "sens_at_spec90": 0.84, "accuracy": 0.93, "brier": 0.08, "ece": 0.017, "nll": 0.246},
+        "CLIP ViT-L/14":   {"auc": 0.93, "sens_at_spec90": 0.84, "accuracy": 0.88, "brier": 0.09, "ece": 0.032, "nll": 0.295}
+      },
+      "ddr": {
+        "DenseNet-121":    {"auc": 0.90, "sens_at_spec90": 0.84, "accuracy": 0.82, "brier": 0.09, "ece": 0.026, "nll": 0.370},
+        "EfficientNet v2": {"auc": 0.91, "sens_at_spec90": 0.85, "accuracy": 0.83, "brier": 0.09, "ece": 0.024, "nll": 0.360},
+        "ConvNeXt":        {"auc": 0.91, "sens_at_spec90": 0.86, "accuracy": 0.84, "brier": 0.08, "ece": 0.022, "nll": 0.352},
+        "CLIP ViT-L/14":   {"auc": 0.86, "sens_at_spec90": 0.78, "accuracy": 0.78, "brier": 0.20, "ece": 0.045, "nll": 0.418}
+      },
+      "chexpert": {
+        "DenseNet-121":    {"auc": 0.89, "sens_at_spec90": 0.80, "accuracy": 0.79, "brier": 0.12, "ece": 0.028, "nll": 0.385},
+        "EfficientNet v2": {"auc": 0.90, "sens_at_spec90": 0.82, "accuracy": 0.80, "brier": 0.12, "ece": 0.026, "nll": 0.372},
+        "ConvNeXt":        {"auc": 0.91, "sens_at_spec90": 0.83, "accuracy": 0.81, "brier": 0.11, "ece": 0.024, "nll": 0.365},
+        "CLIP ViT-L/14":   {"auc": 0.82, "sens_at_spec90": 0.66, "accuracy": 0.75, "brier": 0.15, "ece": 0.050, "nll": 0.438}
+      },
+      "breakhis": {
+        "DenseNet-121":    {"auc": 0.97, "sens_at_spec90": 0.91, "accuracy": 0.90, "brier": 0.07, "ece": 0.018, "nll": 0.248},
+        "EfficientNet v2": {"auc": 0.98, "sens_at_spec90": 0.92, "accuracy": 0.91, "brier": 0.07, "ece": 0.016, "nll": 0.238},
+        "ConvNeXt":        {"auc": 0.98, "sens_at_spec90": 0.93, "accuracy": 0.92, "brier": 0.06, "ece": 0.015, "nll": 0.235},
+        "CLIP ViT-L/14":   {"auc": 0.94, "sens_at_spec90": 0.87, "accuracy": 0.87, "brier": 0.10, "ece": 0.030, "nll": 0.285}
+      }
     }
   }
 }

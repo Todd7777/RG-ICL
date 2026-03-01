@@ -92,12 +92,12 @@ def main():
     encoder_names = args.encoders or [cfg.encoder.name]
 
     encoder_configs = {
-        "dinov2": {"model_id": "facebook/dinov2-large", "image_size": 518, "device": cfg.encoder.device},
+        "dinov3": {"model_id": "facebook/dinov2-large", "image_size": 518, "device": cfg.encoder.device},
         "clip": {"model_id": "openai/clip-vit-large-patch14", "image_size": 224, "device": cfg.encoder.device},
         "mae": {"model_id": "facebook/vit-mae-large", "image_size": 224, "device": cfg.encoder.device},
     }
 
-    output_dir = Path(cfg.output_root) / "features"
+    output_dir = Path(cfg.features_root) if hasattr(cfg, 'features_root') else Path(cfg.output_root) / "features"
 
     for ds_name in dataset_names:
         for enc_name in encoder_names:

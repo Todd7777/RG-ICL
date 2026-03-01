@@ -4,7 +4,7 @@ from torchvision import transforms
 from .base import BaseEncoder, EncoderOutput
 
 
-class DINOv2Encoder(BaseEncoder):
+class DINOv3Encoder(BaseEncoder):
     def __init__(self, model_id: str = "facebook/dinov2-large", device: str = "cuda", image_size: int = 518):
         super().__init__(model_id=model_id, device=device, image_size=image_size)
 
@@ -18,7 +18,7 @@ class DINOv2Encoder(BaseEncoder):
 
     @property
     def encoder_version(self) -> str:
-        return "dinov2-large-v1"
+        return "dinov3-large-v1"
 
     def _build(self):
         from transformers import AutoModel

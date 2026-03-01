@@ -2,9 +2,10 @@ name: classification
 seed: 42
 data_root: data
 output_root: outputs/classification
+features_root: outputs/features
 
 encoder:
-  name: dinov2
+  name: dinov3
   model_id: facebook/dinov2-large
   device: cuda
   batch_size: 32

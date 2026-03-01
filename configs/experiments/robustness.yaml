@@ -2,9 +2,10 @@ name: robustness
 seed: 42
 data_root: data
 output_root: outputs/robustness
+features_root: outputs/features
 
 encoder:
-  name: dinov2
+  name: dinov3
   model_id: facebook/dinov2-large
   device: cuda
   batch_size: 32
@@ -28,16 +29,19 @@ inference:
   api_key_env: OPENAI_API_KEY
 
 datasets:
-  - chexpert
+  - lag
   - ddr
+  - chexpert
+  - breakhis
 
 robustness:
   imbalance_ratios:
     - {neg: 5, pos: 1}
+    - {neg: 3, pos: 3}
     - {neg: 1, pos: 5}
   ordering_permutations: 10
   ordering_seed: 42
-  label_inconsistency_encoder: dinov2
+  label_inconsistency_encoder: dinov3
 
 methods:
   - naive_icl

@@ -55,10 +55,10 @@ class JudgeResult:
 
 RUBRIC_PROMPT = """You are an expert medical evaluator. You will be given a medical image question and two candidate answers (Answer A and Answer B). Evaluate each answer independently on the following dimensions using a 0-5 scale:
 
-1. Clinical Correctness (0-5): Is the medical content factually accurate?
-2. Evidence Grounding (0-5): Is the answer supported by visual evidence from the image?
-3. Completeness (0-5): Does the answer address all aspects of the question?
-4. Uncertainty Acknowledgement (0-5): Does the answer appropriately express uncertainty when warranted?
+1. Clinical Correctness (0-5): Is the answer medically accurate given the visible image evidence and question context?
+2. Evidence Grounding (0-5): Is the answer supported by visible image evidence?
+3. Completeness (0-5): Does the answer address the question appropriately without unnecessary speculation?
+4. Uncertainty Acknowledgement (0-5): Does the answer clearly express uncertainty when appropriate?
 
 After scoring both answers independently, state your overall preference: which answer is better (A, B, or Tie).
 
@@ -88,7 +88,7 @@ Respond in the following JSON format exactly:
 
 
 class LLMJudge:
-    def __init__(self, model: str = "gpt-4-turbo", temperature: float = 0.0,
+    def __init__(self, model: str = "gpt-5", temperature: float = 0.0,
                  seed: int = 42, api_key_env: str = "OPENAI_API_KEY",
                  max_retries: int = 3, retry_delay: float = 5.0):
         self.model = model
@@ -253,8 +253,8 @@ class LLMJudge:
             "wins_a": wins_a,
             "wins_b": wins_b,
             "ties": ties,
-            "win_rate_a": wins_a / total if total > 0 else 0,
-            "win_rate_b": wins_b / total if total > 0 else 0,
+            "win_rate_a": (wins_a + 0.5 * ties) / total if total > 0 else 0,
+            "win_rate_b": (wins_b + 0.5 * ties) / total if total > 0 else 0,
             "tie_rate": ties / total if total > 0 else 0,
             "mean_scores_a": mean_scores_a,
             "mean_scores_b": mean_scores_b,

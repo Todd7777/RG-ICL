@@ -28,16 +28,14 @@ class ZeroShotPrompter:
     def build_classification_prompt(self, query_sample, label_names: list,
                                      is_multi_label: bool = False,
                                      dataset_name: str = "") -> PromptRecord:
-        if is_multi_label:
-            system = ClassificationTemplate.MULTI_LABEL_SYSTEM_PROMPT
-        else:
-            system = ClassificationTemplate.SYSTEM_PROMPT
+        system = ClassificationTemplate.get_system_prompt(dataset_name, is_multi_label)
 
         query_content = ClassificationTemplate.format_query(
             image_path=query_sample.image_path,
             label_names=label_names,
             is_multi_label=is_multi_label,
             dataset_name=dataset_name,
+            method="zero_shot",
         )
 
         messages = [

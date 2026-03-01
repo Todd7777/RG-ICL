@@ -11,10 +11,7 @@ class RGICLPrompter:
                                      retrieval_result=None, label_names: list = None,
                                      is_multi_label: bool = False,
                                      dataset_name: str = "") -> PromptRecord:
-        if is_multi_label:
-            system = ClassificationTemplate.MULTI_LABEL_SYSTEM_PROMPT
-        else:
-            system = ClassificationTemplate.SYSTEM_PROMPT
+        system = ClassificationTemplate.get_system_prompt(dataset_name, is_multi_label)
 
         user_content = []
         ref_ids = []
@@ -34,11 +31,16 @@ class RGICLPrompter:
             ref_labels.append(ref.label_name if not is_multi_label else str(ref.multi_label))
             ref_order.append(idx)
 
+        method_name = "rg_icl_global_spatial"
+        if retrieval_result is not None:
+            method_name = f"rg_icl_{retrieval_result.method}"
+
         query_content = ClassificationTemplate.format_query(
             image_path=query_sample.image_path,
             label_names=label_names,
             is_multi_label=is_multi_label,
             dataset_name=dataset_name,
+            method=method_name,
         )
         user_content.extend(query_content)
 
@@ -46,10 +48,6 @@ class RGICLPrompter:
             {"role": "system", "content": [_text_content(system)]},
             {"role": "user", "content": user_content},
         ]
-
-        method_name = "rg_icl_global_spatial"
-        if retrieval_result is not None:
-            method_name = f"rg_icl_{retrieval_result.method}"
 
         return PromptRecord(
             query_id=query_sample.id,

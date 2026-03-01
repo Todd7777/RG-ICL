@@ -16,8 +16,8 @@ from inference import MLLMClient, OutputParser
 from metrics import ClassificationMetrics, VQAMetrics
 
 
-def load_features(output_root, dataset_name, encoder_name):
-    feat_path = Path(output_root) / "features" / dataset_name / encoder_name
+def load_features(features_root, dataset_name, encoder_name):
+    feat_path = Path(features_root) / dataset_name / encoder_name
     with open(feat_path / "metadata.json", "r") as f:
         metadata = json.load(f)
     global_emb = np.load(feat_path / "global_embeddings.npy")
@@ -52,7 +52,7 @@ def run_classification_ablation(cfg, raw_cfg, client, parser, output_dir):
 
             try:
                 metadata, global_emb, spatial_feats = load_features(
-                    cfg.output_root, ds_name, enc_name)
+                    cfg.features_root, ds_name, enc_name)
             except FileNotFoundError:
                 print(f"    Features not found for {ds_name}/{enc_name}, skipping.")
                 continue
@@ -229,7 +229,7 @@ def run_vqa_ablation(cfg, raw_cfg, client, parser, output_dir):
                 elif method == "rg_icl_global_spatial":
                     try:
                         metadata, global_emb, spatial_feats = load_features(
-                            cfg.output_root, ds_name, enc_name)
+                            cfg.features_root, ds_name, enc_name)
                     except FileNotFoundError:
                         print(f"    Features not found for {ds_name}/{enc_name}, skipping.")
                         continue

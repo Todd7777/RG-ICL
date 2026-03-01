@@ -1,10 +1,10 @@
 from .base import BaseEncoder, EncoderOutput
-from .dinov2 import DINOv2Encoder
+from .dinov3 import DINOv3Encoder
 from .clip_encoder import CLIPEncoder
 from .mae import MAEEncoder
 
 ENCODERS = {
-    "dinov2": DINOv2Encoder,
+    "dinov3": DINOv3Encoder,
     "clip": CLIPEncoder,
     "mae": MAEEncoder,
 }
