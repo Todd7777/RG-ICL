@@ -1,0 +1,47 @@
+name: encoder_ablation
+seed: 42
+data_root: data
+output_root: outputs/encoder_ablation
+
+inference:
+  model: gpt-4-vision-preview
+  temperature: 0.0
+  max_tokens: 1024
+  seed: 42
+  top_p: 1.0
+  api_key_env: OPENAI_API_KEY
+
+retrieval:
+  method: global_spatial
+  k: 6
+  alpha: 0.5
+  similarity_metric: cosine
+  exclude_query: true
+  exclude_test_set: true
+
+encoders:
+  - name: dinov2
+    model_id: facebook/dinov2-large
+    image_size: 518
+  - name: clip
+    model_id: openai/clip-vit-large-patch14
+    image_size: 224
+  - name: mae
+    model_id: facebook/vit-mae-large
+    image_size: 224
+
+classification_datasets:
+  - ddr
+  - chexpert
+  - breakhis
+
+vqa_datasets:
+  - medical_cxr_vqa
+  - vqa_rad
+  - pathvqa
+  - pmc_vqa
+
+methods:
+  - zero_shot
+  - naive_icl
+  - rg_icl_global_spatial

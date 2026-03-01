@@ -1,0 +1,59 @@
+{
+  "provenance": "Reported baselines from manuscript tables. These are NOT recomputed by this codebase.",
+  "classification": {
+    "lag": {
+      "DenseNet-121": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
+      "EfficientNet-v2": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
+      "ConvNeXt": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
+      "CLIP-ViT-L/14": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"}
+    },
+    "ddr": {
+      "DenseNet-121": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
+      "EfficientNet-v2": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
+      "ConvNeXt": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
+      "CLIP-ViT-L/14": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"}
+    },
+    "chexpert": {
+      "DenseNet-121": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
+      "EfficientNet-v2": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
+      "ConvNeXt": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
+      "CLIP-ViT-L/14": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"}
+    },
+    "breakhis": {
+      "DenseNet-121": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
+      "EfficientNet-v2": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
+      "ConvNeXt": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"},
+      "CLIP-ViT-L/14": {"auc": 0.0, "accuracy": 0.0, "source": "table_S1"}
+    }
+  },
+  "vqa": {
+    "medical_cxr_vqa": {
+      "Medical-VLM-24B": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "LLaVA-1.6": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "ChatGPT-5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "Qwen-2.5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "Grok-4.1": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"}
+    },
+    "vqa_rad": {
+      "Medical-VLM-24B": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "LLaVA-1.6": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "ChatGPT-5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "Qwen-2.5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "Grok-4.1": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"}
+    },
+    "pathvqa": {
+      "Medical-VLM-24B": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "LLaVA-1.6": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "ChatGPT-5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "Qwen-2.5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "Grok-4.1": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"}
+    },
+    "pmc_vqa": {
+      "Medical-VLM-24B": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "LLaVA-1.6": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "ChatGPT-5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "Qwen-2.5": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"},
+      "Grok-4.1": {"bleu4": 0.0, "rouge_l": 0.0, "meteor": 0.0, "source": "table_S2"}
+    }
+  }
+}
