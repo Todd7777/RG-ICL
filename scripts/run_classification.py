@@ -221,26 +221,9 @@ def compute_metrics(results, dataset, method_name, metrics_engine):
         y_true = np.array([r["ground_truth_label"] for r in results])
         y_pred = np.array([r["parsed"]["predicted_label_idx"] for r in results])
         # The prompt explicitly requests "probability that the image is <positive_class>",
-        # so confidence is always P(positive class = label index 1).
-        # Safety: if confidence > 0.5 but label is negative, or confidence < 0.5
-        # but label is positive, the values are already correct because the
-        # prompt anchors confidence to the positive class, not the predicted class.
-        # Handle edge case: if confidence is clearly P(predicted) instead of
-        # P(positive) — i.e. pred=0 and conf>0.5, flip it.
-        y_prob_pos = []
-        for r in results:
-            conf = r["parsed"]["confidence"]
-            pred_idx = r["parsed"]["predicted_label_idx"]
-            if pred_idx == 0 and conf > 0.5:
-                # Confidence is P(predicted=negative), flip to P(positive)
-                y_prob_pos.append(1.0 - conf)
-            elif pred_idx == 1 and conf < 0.5:
-                # Confidence is P(predicted=positive) but <0.5 is contradictory,
-                # likely P(negative), flip it
-                y_prob_pos.append(1.0 - conf)
-            else:
-                y_prob_pos.append(conf)
-        y_prob = np.array(y_prob_pos)
+        # so confidence is ALWAYS P(positive class = label index 1), regardless of
+        # which class was predicted. No flipping needed.
+        y_prob = np.array([r["parsed"]["confidence"] for r in results])
         return metrics_engine.compute_binary(y_true, y_pred, y_prob)
     else:
         y_true = np.array([r["ground_truth_label"] for r in results])
