@@ -26,7 +26,7 @@ class RetrievalConfig:
 
 @dataclass
 class InferenceConfig:
-    model: str = "gpt-4-vision-preview"
+    model: str = "gpt-4o"
     temperature: float = 0.0
     max_tokens: int = 1024
     seed: int = 42

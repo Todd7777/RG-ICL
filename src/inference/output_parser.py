@@ -1,3 +1,4 @@
+import json
 import re
 from dataclasses import dataclass, field
 from typing import Optional
@@ -84,6 +85,32 @@ class OutputParser:
                 return min(max(val, 0.0), 1.0)
         return 0.5
 
+    def _parse_json_response(self, raw_response: str, label_names: list) -> tuple:
+        """Try to extract label+confidence from a JSON response. Returns (idx, label, confidence) or (-1, '', 0.5)."""
+        # Strip markdown code fences if present
+        text = raw_response.strip()
+        text = re.sub(r'^```(?:json)?\s*', '', text, flags=re.IGNORECASE)
+        text = re.sub(r'\s*```$', '', text)
+        # Find first JSON object in the response
+        match = re.search(r'\{[^{}]*\}', text, re.DOTALL)
+        if not match:
+            return -1, '', 0.5
+        try:
+            data = json.loads(match.group(0))
+        except json.JSONDecodeError:
+            return -1, '', 0.5
+        label_val = data.get('label', '')
+        confidence_val = data.get('confidence', 0.5)
+        idx, matched_label = self._find_best_label_match(str(label_val), label_names)
+        try:
+            conf = float(confidence_val)
+            if conf > 1.0:
+                conf = conf / 100.0
+            conf = min(max(conf, 0.0), 1.0)
+        except (ValueError, TypeError):
+            conf = 0.5
+        return idx, matched_label, conf
+
     def parse_classification(self, raw_response: str, query_id: str,
                               label_names: list, is_multi_label: bool = False) -> ClassificationParsedOutput:
         output = ClassificationParsedOutput(query_id=query_id, raw_response=raw_response)
@@ -94,6 +121,16 @@ class OutputParser:
         if is_multi_label:
             return self._parse_multi_label(raw_response, query_id, label_names)
 
+        # 1. Try JSON parsing first (gpt-4o returns JSON reliably)
+        idx, matched_label, conf = self._parse_json_response(raw_response, label_names)
+        if idx >= 0:
+            output.predicted_label = matched_label
+            output.predicted_label_idx = idx
+            output.confidence = conf
+            output.parse_success = True
+            return output
+
+        # 2. Try structured "Label: <value>" pattern
         label_match = re.search(r'[Ll]abel[:\s]+(.+?)(?:\n|$)', raw_response)
         if label_match:
             label_text = label_match.group(1).strip()
@@ -105,9 +142,13 @@ class OutputParser:
                 output.parse_success = True
                 return output
 
-        for idx, label in enumerate(label_names):
-            label_lower = label.lower().replace("_", " ")
-            if label_lower in raw_response.lower():
+        # 3. Substring fallback — sort by length descending to avoid false partial matches
+        #    e.g. avoid matching 'non glaucoma' inside 'no signs of glaucoma'
+        ranked = sorted(enumerate(label_names), key=lambda x: len(x[1]), reverse=True)
+        for idx, label in ranked:
+            label_lower = label.lower().replace('_', ' ')
+            # Require word-boundary match to avoid 'non glaucoma' matching inside 'glaucoma'
+            if re.search(r'\b' + re.escape(label_lower) + r'\b', raw_response.lower()):
                 output.predicted_label = label
                 output.predicted_label_idx = idx
                 output.confidence = self._extract_confidence(raw_response)

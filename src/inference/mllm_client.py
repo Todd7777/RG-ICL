@@ -37,7 +37,7 @@ class InferenceRecord:
 
 
 class MLLMClient:
-    def __init__(self, model: str = "gpt-4-vision-preview", temperature: float = 0.0,
+    def __init__(self, model: str = "gpt-4o", temperature: float = 0.0,
                  max_tokens: int = 1024, seed: int = 42, top_p: float = 1.0,
                  api_key_env: str = "OPENAI_API_KEY", max_retries: int = 3,
                  retry_delay: float = 5.0):

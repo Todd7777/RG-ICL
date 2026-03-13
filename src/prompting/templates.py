@@ -110,10 +110,14 @@ class ClassificationTemplate:
             )
         else:
             labels_str = ", ".join(label_names)
+            positive_class = label_names[-1]
             text = (
                 f"{instruction}\n\n"
                 f"Classify this image into one of: {labels_str}\n\n"
-                f"Return:\nLabel: <label>\nConfidence: <probability>"
+                f"You MUST respond using ONLY this exact JSON format, no other text:\n"
+                f'{{"label": "<one of: {", ".join(label_names)}>", '
+                f'"confidence": <probability that the image is {positive_class}, float 0.0-1.0>, '
+                f'"evidence": "<one sentence>"}}'
             )
         return [_image_content(image_path), _text_content(text)]
 
